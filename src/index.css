@@ -1,0 +1,332 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Oswald:wght@200..700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0b1220;
+  --color-panel: #121b2e;
+  --color-line: #24304a;
+  --color-orange: #ff6a1f;
+  --color-sky: #8ec5ff;
+  --color-mist: #c9d3e6;
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-oswald: "Oswald", sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  background-color: #0b1220;
+  color: white;
+  font-family: "Geist", system-ui, sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+@utility flex-center {
+  @apply flex justify-center items-center;
+}
+
+@utility col-center {
+  @apply flex flex-col justify-center items-center;
+}
+
+@utility text-gradient {
+  background: linear-gradient(to bottom, #ffffff, #7d8aa8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility fluid {
+  font-size: clamp(2.75rem, 11vw, 9.5rem);
+}
+
+@utility fluid-md {
+  font-size: clamp(2.25rem, 7vw, 6rem);
+}
+
+@utility sr-only-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+@layer components {
+  main {
+    @apply w-full overflow-x-hidden;
+  }
+  /* Paste inside @layer components in index.css */
+  nav {
+    @apply fixed top-0 z-50 w-full border-b border-transparent transition-all duration-500;
+
+    div {
+      @apply flex md:flex-row flex-col md:justify-between items-center gap-4 md:gap-8 py-4 lg:px-0 px-5 container mx-auto;
+    }
+
+    .brand {
+      @apply flex items-center gap-2;
+    }
+
+    .brand p {
+      @apply font-oswald text-3xl leading-none text-orange;
+    }
+
+    ul {
+      @apply flex-center lg:gap-12 gap-7 md:mr-auto md:ml-10;
+    }
+
+    a {
+      @apply cursor-pointer text-nowrap md:text-base text-sm text-white;
+    }
+
+    ul a:hover {
+      @apply text-orange;
+    }
+
+    ul a:focus-visible,
+    .nav-cta:focus-visible,
+    .brand:focus-visible {
+      @apply outline-2 outline-offset-4 outline-sky;
+    }
+
+    .nav-cta {
+      @apply rounded-full bg-orange text-navy font-semibold px-5 py-2;
+    }
+
+    &.scrolled {
+      background-color: rgba(11, 18, 32, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom-color: var(--color-line);
+    }
+  }
+
+  /* ---------- shared blocks ---------- */
+  .block {
+    @apply rounded-3xl border border-line bg-panel p-6 md:p-8 flex flex-col gap-4;
+
+    h3 {
+      @apply font-oswald text-3xl md:text-4xl leading-none;
+    }
+
+    p {
+      @apply text-base md:text-lg text-mist max-w-prose;
+    }
+
+    ul {
+      @apply space-y-2 text-mist;
+    }
+
+    li {
+      @apply text-base;
+    }
+  }
+
+  .block-orange {
+    @apply bg-orange border-orange text-navy;
+
+    p,
+    li {
+      @apply text-navy;
+    }
+  }
+
+  .block-sky {
+    @apply bg-sky border-sky text-navy;
+
+    p,
+    li {
+      @apply text-navy;
+    }
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-3 rounded-full px-7 py-4 text-lg font-semibold cursor-pointer transition-transform duration-200;
+  }
+
+  .btn:hover {
+    transform: translateY(-3px);
+  }
+
+  .btn:focus-visible {
+    @apply outline-2 outline-offset-4 outline-sky;
+  }
+
+  .btn-primary {
+    @apply bg-orange text-navy;
+  }
+
+  .btn-ghost {
+    @apply border border-line text-white;
+  }
+
+  /* ---------- page 1: hero ---------- */
+  #hero {
+    @apply relative min-h-dvh w-full;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(200deg, transparent 35%, #000);
+    }
+
+    .hero-top {
+      @apply relative container mx-auto px-5 pt-40 pb-20 flex flex-col gap-8;
+
+      h1 {
+        @apply font-oswald leading-[0.85] text-orange;
+      }
+
+      .tagline {
+        @apply font-oswald text-3xl md:text-5xl text-white;
+      }
+
+      .lede {
+        @apply text-lg md:text-2xl text-mist max-w-3xl leading-snug;
+      }
+
+      .cta-row {
+        @apply flex flex-wrap gap-4 pt-2;
+      }
+    }
+
+    .hero-blocks {
+      @apply relative container mx-auto px-5 pb-28 grid grid-cols-1 lg:grid-cols-12 gap-5;
+
+      .block:nth-child(1) {
+        @apply lg:col-span-5;
+      }
+
+      .block:nth-child(2) {
+        @apply lg:col-span-4;
+      }
+
+      .block:nth-child(3) {
+        @apply lg:col-span-3;
+      }
+    }
+  }
+
+  /* ---------- sticky scroll words ---------- */
+  #words {
+    @apply container mx-auto px-5 py-28;
+
+    .words-wrap {
+      @apply flex items-start gap-[0.35em] font-oswald fluid-md leading-tight;
+    }
+
+    h2 {
+      @apply sticky inline-block m-0 font-semibold text-white;
+      top: calc(50% - 0.5lh);
+      font-size: inherit;
+      height: fit-content;
+    }
+
+    ul {
+      @apply m-0 p-0 list-none font-semibold;
+    }
+
+    li {
+      color: oklch(76% 0.19 calc(25 + (var(--i) * 6)));
+      opacity: 0.2;
+    }
+
+    li:last-of-type {
+      @apply text-white;
+    }
+  }
+
+  /* ---------- beta notice ---------- */
+  #beta {
+    @apply container mx-auto px-5 pb-28;
+
+    .block {
+      @apply lg:flex-row lg:items-center lg:justify-between gap-6;
+    }
+  }
+
+  /* ---------- page 2: download ---------- */
+  #download {
+    @apply relative container mx-auto px-5 pt-40 pb-28 min-h-dvh;
+
+    h2 {
+      @apply font-oswald leading-[0.85] text-orange fluid-md mb-10;
+    }
+
+    .download-grid {
+      @apply grid grid-cols-1 lg:grid-cols-12 gap-5;
+    }
+
+    .dl-main {
+      @apply lg:col-span-7 justify-between;
+
+      .version {
+        @apply font-oswald text-6xl md:text-8xl leading-none;
+      }
+
+      .meta {
+        @apply flex flex-wrap gap-x-6 gap-y-1 text-base;
+      }
+
+      .fallback {
+        @apply text-sm underline underline-offset-4;
+      }
+    }
+
+    .dl-specs {
+      @apply lg:col-span-5;
+
+      dl {
+        @apply grid grid-cols-[auto_1fr] gap-x-6 gap-y-2;
+      }
+
+      dt {
+        @apply text-mist;
+      }
+
+      dd {
+        @apply text-white font-medium;
+      }
+    }
+
+    .dl-steps {
+      @apply lg:col-span-12;
+
+      ol {
+        @apply grid grid-cols-1 md:grid-cols-3 gap-5 list-none p-0;
+      }
+
+      ol li {
+        @apply rounded-2xl border border-line p-5 text-mist text-base;
+      }
+
+      ol li strong {
+        @apply block font-oswald text-2xl text-white mb-1;
+      }
+    }
+  }
+
+  footer {
+    @apply container mx-auto px-5 py-10 text-sm text-mist border-t border-line;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn:hover {
+    transform: none;
+  }
+}
