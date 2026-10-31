@@ -11,10 +11,10 @@ gsap.registerPlugin(ScrambleTextPlugin, useGSAP);
    It looks like https://drive.google.com/file/d/FILE_ID/view?usp=sharing
 ------------------------------------------------------------------- */
 const DRIVE_LINK =
-  "https://drive.google.com/file/d/1O4D4FvTmbdjRG94goM2xS1uhsslbPmFz/view?usp=sharing";
+  "https://drive.google.com/file/d/1n68g6jbnsduOPANMFhmcR9qcs0n4KrPh/view?usp=drive_link";
 
 // Update these by hand whenever you upload a new build.
-const VERSION = "v0.1.0-beta";
+const VERSION = "v0.0.6-beta";
 const FILE_SIZE = ""; // e.g. "180 MB", leave empty to hide
 const UPDATED = ""; // e.g. "30 Oct 2026", leave empty to hide
 
