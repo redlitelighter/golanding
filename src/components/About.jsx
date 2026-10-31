@@ -4,7 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
 import Carousel from "./Carousel";
-import CoinOrbit from "./CoinOrbit";
 import { coins } from "../../constants";
 
 gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin, useGSAP);
@@ -47,7 +46,7 @@ const swapSteps = [
   },
   {
     title: "Sign and settle",
-    body: "You confirm, your wallet signs on the device, and Hedera settles it in seconds. Check it on HashScan. The first time you hold a new coin, Hedera asks for a one-time token association.",
+    body: "You confirm, your wallet signs on the device, and Hedera settles it in seconds. Check it on HashScan.",
   },
 ];
 
